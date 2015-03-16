@@ -10,8 +10,8 @@ Fork & pullreq
 
 ## License
 
-MY CODE: BSD Style, See LICENSE file for details
+This directory ONLY: BSD Style, See LICENSE file for details
 
-NOTE: See extra details regarding the original source that led to `exploitaben` [here](exploitaben/LICENSE.md)
+NOTE: See extra license for regarding the original source that led to `exploitaben` [here](exploitaben/LICENSE.md). It's too hairy for me, so my exploitaben code is not licensed or copyrighted until that gets sorted out.
 
 (c) Ben Nagy, 2015
