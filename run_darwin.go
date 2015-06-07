@@ -1,7 +1,6 @@
 package francis
 
 import (
-	"bytes"
 	"fmt"
 	"github.com/bnagy/crashwalk/crash"
 	"go/build"
@@ -40,21 +39,8 @@ func (e *Engine) Run(command []string) (crash.Info, error) {
 	}
 
 	out, _ := ioutil.ReadAll(stdout)
-	err = cmd.Wait()
+	cmd.Wait()
 
-	// handles clean exit, exit with errorcode ( no crash ) or timeout
-	if len(out) == 0 ||
-		bytes.Contains(out, []byte("exited with status")) ||
-		bytes.Contains(out, []byte("killing the process...")) {
-		// No crash.
-		return crash.Info{}, fmt.Errorf("No lldb output for %s", cmdStr)
-	}
-
-	ci := parse(out, cmdStr)
-	// If, for some reason, we managed to parse the instrumentation output
-	// without crashing, but there's an error from running the command we
-	// return both. The caller can abort if they're being strict or just
-	// ignore it otherwise.
-	return ci, err
+	return getCrashInfo(out, cmdStr)
 
 }

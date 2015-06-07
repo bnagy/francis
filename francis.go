@@ -386,3 +386,20 @@ func parse(raw []byte, cmd string) crash.Info {
 
 // the Run method is in its own file so we can use different options on darwin
 // and linux
+
+func getCrashInfo(raw []byte, cmdStr string) (crash.Info, error) {
+	// handles clean exit, exit with errorcode ( no crash ) or timeout
+	if len(raw) == 0 ||
+		bytes.Contains(raw, []byte("exited with status")) ||
+		bytes.Contains(raw, []byte("killing the process...")) {
+		// No crash.
+		return crash.Info{}, fmt.Errorf("no exploitaben.py output: %s", cmdStr)
+	}
+
+	if bytes.Contains(raw, []byte("[ABORT]")) {
+		return crash.Info{}, fmt.Errorf("exploitaben.py aborted: %s", cmdStr)
+	}
+
+	ci := parse(raw, cmdStr) // panics on error
+	return ci, nil
+}
