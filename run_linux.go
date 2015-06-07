@@ -22,7 +22,7 @@ func (e *Engine) Run(command []string) (crash.Info, error) {
 
 	// Construct the command array
 	// TODO LINUX - we don't have MallocScribble, is there an easy equivalent?
-	cmdSlice := []string{tool, "-e"}
+	cmdSlice := []string{tool}
 	if e.Timeout > 0 {
 		cmdSlice = append(cmdSlice, []string{"-t", strconv.Itoa(e.Timeout)}...)
 	}
