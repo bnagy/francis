@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-func (e *Engine) Run(command []string) (crash.Info, error) {
+func (e *Engine) Run(command []string, memlimit, timeout int) (crash.Info, error) {
 
 	pkg, err := build.Import("github.com/bnagy/francis", ".", build.FindOnly)
 	if err != nil {
