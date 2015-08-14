@@ -4,6 +4,8 @@
 
 Yes hello I am Francis. I am an LLDB engine package for Go that runs OSX binaries and triages crashes. I am quite young, but I am plucky.
 
+Presently I am possibly a little bitrotten. Use me with care.
+
 ## Contributing
 
 Fork & pullreq
