@@ -127,6 +127,12 @@ LLDB OUTPUT:
 }
 
 func mustParseHex(s string, die func()) (n uint64) {
+	// registers here are coming as colored coded cause of exploitaben's pretty print, and strconv.ParseUint fails
+	// example: 0x000000000000fff4 is causing
+	// strconv.ParseUint: parsing "\x1b[36m0x000000000000fff4\x1b[0m": invalid syntax
+
+	r := regexp.MustCompile("\x1b[^m]*m")
+	s = r.ReplaceAllString(s, "")	
 	n, err := strconv.ParseUint(s, 0, 64)
 	if err != nil {
 		die()
