@@ -28,6 +28,8 @@ func (e *Engine) Run(command []string, filename string, memlimit, timeout int) (
 	if e.Timeout > 0 {
 		cmdSlice = append(cmdSlice, []string{"-t", strconv.Itoa(e.Timeout)}...)
 	}
+	// This gets output from exploitaben without color encoding
+	cmdSlice = append(cmdSlice,"-N")
 	cmdSlice = append(cmdSlice, "--")
 	cmdSlice = append(cmdSlice, command...)
 	cmdStr := strings.Join(cmdSlice, " ")

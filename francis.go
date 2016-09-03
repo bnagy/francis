@@ -127,6 +127,7 @@ LLDB OUTPUT:
 }
 
 func mustParseHex(s string, die func()) (n uint64) {
+
 	n, err := strconv.ParseUint(s, 0, 64)
 	if err != nil {
 		die()
